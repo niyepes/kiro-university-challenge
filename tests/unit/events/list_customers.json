@@ -1,0 +1,7 @@
+{
+  "httpMethod": "GET",
+  "path": "/customers",
+  "pathParameters": null,
+  "body": null,
+  "requestContext": {}
+}

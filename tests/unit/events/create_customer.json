@@ -1,0 +1,7 @@
+{
+  "httpMethod": "POST",
+  "path": "/customers",
+  "pathParameters": null,
+  "body": "{\"name\": \"Jane Smith\", \"email\": \"jane@example.com\", \"phone\": \"+15550001234\"}",
+  "requestContext": {}
+}
