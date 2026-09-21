@@ -1,6 +1,14 @@
-# Terraform
-**/.terraform/
-**/*.tfstate
-**/*.tfstate.*
-**/crash.log
-**/crash.*.log
+# Terraform: archivos generados y descargados
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+
+# Archivos de variables que pueden contener secretos
+*.tfvars
+*.tfvars.json
+
+# Excepciones para plantillas de variables
+!*.tfvars.example
+!*.tfvars.sample
