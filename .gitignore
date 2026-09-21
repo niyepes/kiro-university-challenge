@@ -4,6 +4,8 @@
 *.tfstate.*
 crash.log
 crash.*.log
+**/.terraform/
+**/.terraform/**
 
 # Archivos de variables que pueden contener secretos
 *.tfvars
