@@ -1,0 +1,24 @@
+{
+  "powers": [
+    {
+      "name": "terraform",
+      "enabled": true
+    },
+    {
+      "name": "ministack",
+      "enabled": true
+    },
+    {
+      "name": "strands",
+      "enabled": true
+    },
+    {
+      "name": "aws-transform-agent-toolkit",
+      "enabled": true
+    },
+    {
+      "name": "aws-infrastructure-as-code",
+      "enabled": true
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "aws-mcp": {
-      "command": "uvx",
+      "command": "/home/nicolas/.local/bin/uvx",
       "timeout": 100000,
       "transport": "stdio",
       "args": [
@@ -9,7 +9,8 @@
         "--log-level",
         "ERROR",
         "https://aws-mcp.us-east-1.api.aws/mcp"
-      ]
+      ],
+      "disabled": false
     }
   }
 }
