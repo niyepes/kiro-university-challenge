@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Commit Message",
+      "trigger": "UserPromptSubmit",
+      "action": {
+        "type": "agent",
+        "prompt": "Lee los cambios actualmente en staged (#Git Diff). Redacta un solo mensaje de commit que siga las convenciones de .kiro/steering/commit-format.md:\n\n* Uno de: feat:, fix:, refactor:, test:, chore:, docs:\n* Minúsculas, modo imperativo, sin punto al final\n* Línea de asunto con menos de 72 caracteres\n\nDevuelve solo el mensaje de commit, sin explicación."
+      },
+      "description": "Lee el diff en staged y redacta un mensaje de commit convencional",
+      "enabled": true
+    }
+  ]
+}

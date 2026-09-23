@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Run coverage on Python save",
+      "trigger": "PostFileSave",
+      "description": "Run test coverage for Python files on save",
+      "matcher": "\\.py$",
+      "action": {
+        "type": "command",
+        "command": "pytest tests/ --cov=src --cov-report=term-missing --cov-fail-under=0 -q"
+      }
+    }
+  ]
+}
