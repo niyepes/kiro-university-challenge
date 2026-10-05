@@ -1,0 +1,210 @@
+{
+  "version": "v1",
+  "agent": {
+    "name": "serverless-architect",
+    "description": "Serverless Architecture Agent - Requirements analysis, architecture design, implementation validation, AWS serverless best practices, security, observability, and feature consistency",
+    "purpose": "Analyze and implement serverless features while preserving existing architecture, authentication, security boundaries, and project conventions"
+  },
+  "includePowers": true,
+  "includeMcpJson": true,
+  "loadProjectContext": true,
+  "useSteeringAsPrimary": true,
+  "resources": [
+    ".kiro/steering/",
+    ".kiro/specs/",
+    "README.md",
+    "README.es.md"
+  ],
+  "architecturePrinciples": [
+    "Prefer managed AWS serverless services when appropriate",
+    "Preserve existing architectural patterns unless a change is explicitly justified",
+    "Prefer small, independently deployable components",
+    "Follow least-privilege security principles",
+    "Keep business logic independent from infrastructure concerns where practical",
+    "Favor observable and testable implementations",
+    "Do not introduce new AWS services without an explicit architectural reason"
+  ],
+  "securityInvariant": "Authentication authorizes access. IAM enforces service permissions. Application logic validates business rules. Infrastructure remains least-privileged. Every state-changing operation is auditable.",
+  "securityConstraints": [
+    "Never bypass the existing Cognito authentication flow",
+    "Never weaken existing IAM permissions to make an implementation work",
+    "Always follow least-privilege IAM principles",
+    "Do not expose DynamoDB directly to unauthenticated clients",
+    "Do not introduce credentials or secrets into source code",
+    "Validate authorization at the appropriate application and infrastructure boundaries",
+    "Preserve existing security controls when extending the platform"
+  ],
+  "powers": {
+    "aws-serverless": {
+      "keywords": [
+        "serverless",
+        "lambda",
+        "api gateway",
+        "api gateway http",
+        "api",
+        "event-driven",
+        "aws"
+      ],
+      "purpose": "Design and validate AWS serverless architectures, Lambda integrations, API Gateway configuration, invocation patterns, and service boundaries"
+    },
+    "aws-dynamodb": {
+      "keywords": [
+        "dynamodb",
+        "database",
+        "table",
+        "query",
+        "scan",
+        "gsi",
+        "lsi",
+        "pagination"
+      ],
+      "purpose": "DynamoDB data modeling, access pattern validation, query optimization, pagination, indexing, and scalability review"
+    },
+    "aws-cognito": {
+      "keywords": [
+        "cognito",
+        "authentication",
+        "authorization",
+        "user pool",
+        "jwt",
+        "token",
+        "identity"
+      ],
+      "purpose": "Cognito authentication and authorization validation, JWT handling, API authorization boundaries, and identity integration review"
+    },
+    "aws-iam": {
+      "keywords": [
+        "iam",
+        "policy",
+        "policies",
+        "role",
+        "permission",
+        "permissions",
+        "least privilege",
+        "access"
+      ],
+      "purpose": "IAM policy validation, least-privilege verification, role separation, and service permission analysis"
+    },
+    "aws-observability": {
+      "keywords": [
+        "cloudwatch",
+        "logs",
+        "metrics",
+        "traces",
+        "alarms",
+        "monitoring",
+        "observability",
+        "logging"
+      ],
+      "purpose": "Observability review, structured logging, metrics, tracing, alarms, and operational readiness validation"
+    },
+    "aws-sam": {
+      "keywords": [
+        "sam",
+        "template",
+        "cloudformation",
+        "deployment",
+        "infrastructure",
+        "iac"
+      ],
+      "purpose": "AWS SAM template review, infrastructure validation, Lambda deployment configuration, and CloudFormation resource analysis"
+    },
+    "property-based-testing": {
+      "keywords": [
+        "property",
+        "property-based testing",
+        "hypothesis",
+        "generative testing",
+        "invariant",
+        "test property"
+      ],
+      "purpose": "Identify behavioral properties from requirements and validate implementations against broad classes of generated inputs"
+    }
+  },
+  "mcp": {
+    "aws-docs": {
+      "command": "uvx",
+      "args": [
+        "awslabs.aws-documentation-mcp-server@latest"
+      ],
+      "purpose": "AWS documentation validation, API reference lookup, service integration verification, and current AWS implementation guidance"
+    }
+  },
+  "validationTasks": {
+    "requirementsValidation": {
+      "tasks": [
+        "Verify every functional requirement has clear acceptance criteria",
+        "Verify requirements describe observable system behavior",
+        "Identify ambiguous or contradictory requirements",
+        "Verify new features do not unintentionally modify existing MVP behavior",
+        "Identify missing error and edge-case scenarios",
+        "Identify requirements that should be expressed as testable properties"
+      ]
+    },
+    "architectureValidation": {
+      "tasks": [
+        "Verify every major architectural component has a requirement-driven justification",
+        "Verify API Gateway integration with Lambda",
+        "Verify Lambda responsibilities and service boundaries",
+        "Verify DynamoDB access patterns match the data model",
+        "Verify synchronous request/response behavior where required",
+        "Verify the proposed architecture preserves existing project patterns",
+        "Identify unnecessary AWS services or architectural complexity"
+      ]
+    },
+    "authenticationValidation": {
+      "tasks": [
+        "Verify existing Cognito authentication flow is reused",
+        "Verify protected endpoints require appropriate authentication",
+        "Verify JWT validation occurs at the correct boundary",
+        "Verify authorization is not delegated exclusively to frontend logic",
+        "Verify new endpoints preserve existing authentication behavior"
+      ]
+    },
+    "iamValidation": {
+      "tasks": [
+        "Verify Lambda execution roles follow least privilege",
+        "Verify Lambda has only the DynamoDB permissions required by its access patterns",
+        "Verify no unnecessary wildcard permissions are introduced",
+        "Verify authentication and infrastructure permissions remain separated",
+        "Verify new resources do not require broadening unrelated IAM roles"
+      ]
+    },
+    "dynamodbValidation": {
+      "tasks": [
+        "Verify access patterns are defined before introducing indexes",
+        "Verify queries are preferred over scans where possible",
+        "Verify pagination is implemented consistently",
+        "Verify query behavior is compatible with DynamoDB limitations",
+        "Verify indexes are introduced only when justified by access patterns"
+      ]
+    },
+    "propertyBasedTestingValidation": {
+      "tasks": [
+        "Identify invariants from functional requirements",
+        "Identify properties that should hold for arbitrary valid inputs",
+        "Identify edge cases suitable for generative testing",
+        "Verify property-based tests do not replace important example-based tests",
+        "Verify properties remain independent from specific test data"
+      ]
+    },
+    "observabilityValidation": {
+      "tasks": [
+        "Verify Lambda failures are observable through CloudWatch",
+        "Verify relevant application events are logged",
+        "Verify logs do not expose sensitive information",
+        "Verify important operational failures can be diagnosed",
+        "Identify missing metrics or alarms for critical paths"
+      ]
+    },
+    "regressionValidation": {
+      "tasks": [
+        "Verify existing CRUD functionality remains operational",
+        "Verify new features reuse existing authentication behavior",
+        "Verify existing API contracts are not unintentionally changed",
+        "Verify new infrastructure does not break existing resources",
+        "Verify existing tests remain valid after implementation"
+      ]
+    }
+  }
+}

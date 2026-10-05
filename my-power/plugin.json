@@ -1,0 +1,16 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "serverless-aws",
+  "version": "0.1.0",
+  "description": "Build and operate serverless AWS APIs with Terraform, Lambda, and API Gateway. Loads setup guidance and AWS documentation tools when working on serverless infrastructure.",
+  "author": "AnyCompany Platform Team",
+  "license": "MIT",
+  "keywords": [
+    "aws",
+    "serverless",
+    "lambda",
+    "api-gateway",
+    "terraform",
+    "python"
+  ]
+}
